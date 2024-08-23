@@ -35,7 +35,43 @@ namespace AlerterSpace
     {
         private readonly NetworkAlert _networkAlert;
         public int AlertFailureCount { get; private set; }
+ using System;
  
+namespace AlerterSpace
+{
+    // Base class for network alerts
+    public abstract class NetworkAlert
+    {
+        public abstract int SendAlert(float celsius);
+    }
+ 
+    // Stub class that always succeeds
+    public class NetworkAlertStub : NetworkAlert
+    {
+        public override int SendAlert(float celsius)
+        {
+            Console.WriteLine("ALERT: Temperature is {0} Celsius", celsius);
+            // Stub always succeeds and returns 200
+            return 200;
+        }
+    }
+ 
+    // Stub class that simulates failure
+    public class NetworkAlertFailureStub : NetworkAlert
+    {
+        public override int SendAlert(float celsius)
+        {
+            Console.WriteLine("ALERT: Temperature is {0} Celsius", celsius);
+            // Simulate a failure
+            return 500;
+        }
+    }
+ 
+    // Alerter class that uses dependency injection for network alerts
+    public class Alerter
+    {
+        private readonly NetworkAlert _networkAlert;
+        public int AlertF
         public Alerter(NetworkAlert networkAlert)
         {
             _networkAlert = networkAlert;
@@ -62,8 +98,3 @@ namespace AlerterSpace
             TestWithAlwaysSuccessfulStub();
             TestWithFailureSimulatedStub();
         }
-
-has context menu
-
-
-has context menu
