@@ -82,4 +82,3 @@ namespace MisalignedSpace
         }
     }
 }
-has context menu
