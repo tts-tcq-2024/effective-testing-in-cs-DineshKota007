@@ -31,7 +31,3 @@ jobs:
  
     - name: alerter fail
       run: bash .github/workflows/expectfail.sh python alerter.cs
-has context menu
-
-
-has context menu
